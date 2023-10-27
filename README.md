@@ -18,3 +18,16 @@
    - Creamos MiServicio
    - Creamos MiController
    - Una vista miServicio.html
+3. Inyección de Dependencias (No me llames, yo te llamo)
+   - Solución poco desacoplada(Sin Interfaces)
+   - **MiController** ya no llamará a la clase **MiServicio**
+   - **MiServicio** sé instancia o inyecta en **MiController**
+   - **@Component** agregamos a MiServicio: Spring toma conocimiento del componente MiServicio para luego inyectarlo
+   - **@Autowired** agregamos a MiController: Busca un componente que corresponda, de tal forma que lo inyecta y se puede utilizar
+
+
+
+
+
+
+
