@@ -30,6 +30,16 @@
    - Definimos el método operación en IServicio
    - MiServicio implementa IServicio (Desarrollamos el método operación)
    - MiController inyecta la interface IServicio
+5. Agregando una nueva Clase
+   - Al tener una opción desacoplada no modificamos **MiController**
+   - Solo implementamos el servicio a la nueva Clase **MiServicioComplejo**
+   - Además, declaramos a la clase **MiServicioComplejo** como un @Component
+   - **Problema**
+     - Al encontrar 2 implementaciones no sabe a cuál elegir
+   - **Solución**
+     - Solución1: Eliminar un componente
+     - Solución2: Agregar **@Primary**
+     - Solución3: **@Qualifier** Se agrega en MiController y se agrega el nombre del componente, para ello antes los componentes tienen que tener un nombre
 
 
 

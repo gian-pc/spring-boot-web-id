@@ -3,6 +3,7 @@ package com.gianpc.app.controllers;
 import com.gianpc.app.models.services.IServicio;
 import com.gianpc.app.models.services.MiServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,11 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MiController {
 
     @Autowired
-    private IServicio servicio;
+    @Qualifier("MiServicioComplejo")
+    private IServicio iServicio;
 
     @GetMapping("/miservicio")
     public String miServicio(Model model){
-        model.addAttribute("servicio", servicio.operacion());
+        model.addAttribute("servicio", iServicio.operacion());
         return "miservicio";
     }
 }

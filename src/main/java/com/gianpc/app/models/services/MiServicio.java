@@ -2,7 +2,7 @@ package com.gianpc.app.models.services;
 
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("MiServicio")
 public class MiServicio implements IServicio{
 
     @Override
