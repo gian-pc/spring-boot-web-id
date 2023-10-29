@@ -24,9 +24,12 @@
    - **MiServicio** sé instancia o inyecta en **MiController**
    - **@Component** agregamos a MiServicio: Spring toma conocimiento del componente MiServicio para luego inyectarlo
    - **@Autowired** agregamos a MiController: Busca un componente que corresponda, de tal forma que lo inyecta y se puede utilizar
-
-
-
+4. Inyección de Dependencias
+   - Solución desacoplada(Con Interfaces)
+   - Creamos una interfaz "IServicio"
+   - Definimos el método operación en IServicio
+   - MiServicio implementa IServicio (Desarrollamos el método operación)
+   - MiController inyecta la interface IServicio
 
 
 

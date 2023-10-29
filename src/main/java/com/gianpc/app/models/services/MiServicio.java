@@ -3,9 +3,10 @@ package com.gianpc.app.models.services;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MiServicio {
+public class MiServicio implements IServicio{
 
-    public String operacion(){
-        return "Ejecutando algo...";
+    @Override
+    public String operacion() {
+        return "Ejecutando algo desde MiServicio...!";
     }
 }
