@@ -40,7 +40,55 @@
      - Solución1: Eliminar un componente
      - Solución2: Agregar **@Primary**
      - Solución3: **@Qualifier** Se agrega en MiController y se agrega el nombre del componente, para ello antes los componentes tienen que tener un nombre
-
+6. Ejercicio de ejemplo para aplicar la Inyección de Dependencias
+   - Creamos un nuevo package **domain**
+     - Dentro creamos 4 clases:
+       - Boleta
+       - Cliente
+       - ItemBoleta
+       - Producto
+     - Relación
+       - Cliente 1---->n Boleta
+       - Boleta n---->m Producto => Se genera Otra Tabla puente ItemBoleta
+   - En una **Boleta** se puede tener una lista de **ItemBoleta**
+   - Creamos el controlador **BoletaController** 
+     - Que nos permita enviar una boleta a una vista html
+     - Que la vista html nos permita renderizar la boleta
+   - Creamos un método que me permita enviar la boleta a una vista
+   - Creamos la vista **boleta.html**
+   - Necesitamos crear un Objeto de tipo **Boleta**
+     - Pero necesitamos lo siguiente:
+       - **descripcion**
+         - ¿En dónde podríamos generar esta descripción?
+         - Podríamos crear un objeto y darle la descripción de manera explícita
+         - Pero la idea es trabajarlo con **Inyección de Dependencias**
+         - Para ello lo que haremos será simular una **Base de Datos**
+           - Para lo cual generaremos algunos atributos en **application.properties**
+           - Como **descripcion** y con @Value llevamos el valor de **application.properties** a la clase **Boleta**
+           
+       - **cliente**
+         - Lo mismo con los atributos de cliente e inyectamos a la clase **Cliente**
+         - **@Value** nos permite inyectar los valores a los atributos de **cliente**
+         - Los valores de los atributos de Cliente hay que llevarlos a **Boleta**
+         - Para ello hacemos uso de la **Inyección de Dependencias** con **@Autowired**
+         - Pero para poder inyectar Cliente debe ser un componente con **@Component**
+       - **List< ItemBoleta >**
+         - **Problema** 
+           - Al tener una lista de elementos en una boleta no se puede agregar solo un **@Componente** porque generaría solo un elemento.
+         - **Solución** 
+           - Crearemos nuestro propio archivo de configuración **AppConfig** generar ahí un **@Bean**
+           - El cual haría la función de un **@Component** generar ahí nuestros items y luego llamarlos e inyectarlos en Boleta
+           - Creamos **AppConfig** y le agregamos la anotación **@Configuration** para que se ejecute al arrancar el aplicativo
+           - Le agregamos un **@Bean** el cual nos generará los ItemBoleta
+           - El @Bean está haciendo las veces de @Component
+           - Con una diferencia los @Component son propios de nuestra aplicación(Interface, Clase Concreta)
+           - Mientras que los @Bean se usan en los archivos de configuración, no necesariamente son propios de nuestra aplicación, sino que podría ser algo fuera de (como la API de una aplicación externa)
+           - Luego inyectamos en Boleta
+           - Convertimos Boleta en un component
+   - Inyectamos la Boleta en BoletaController
+   - Luego se envía a la vista
+   - Resultado
+   ![img.png](src%2Fmain%2Fresources%2Fstatic%2Fimg.png)
 
 
 
